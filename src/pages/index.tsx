@@ -1,6 +1,6 @@
 import BasicLayout from "@/layouts/BasicLayout";
 
-const Home = ({ children }) => {
+const Home = ({ children }: { children: React.ReactNode }) => {
   return <BasicLayout>{children}</BasicLayout>;
 };
 

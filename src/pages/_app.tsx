@@ -1,12 +1,9 @@
 import wrapper from "@/store/configureStore";
 import GlobalStyle from "@/styles/GlobalStyle";
+import { AppProps } from "next/app";
 import Head from "next/head";
 
-type Props = {
-  Component: any;
-};
-
-const App: React.FC<Props> = ({ Component }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <GlobalStyle />
@@ -14,7 +11,7 @@ const App: React.FC<Props> = ({ Component }) => {
         <meta charSet="utf-8" />
         <title>REACT TUTORIAL</title>
       </Head>
-      <Component />
+      <Component {...pageProps} />
     </>
   );
 };

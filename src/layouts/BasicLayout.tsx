@@ -1,19 +1,18 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  MinusOutlined,
+  PlusOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
-  PlusOutlined,
-  MinusOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import { useState, useCallback } from "react";
-import styled from "styled-components";
+import { useCallback, useState } from "react";
 
 const { Header, Sider, Content } = Layout;
 
-export function BasicLayout({ children }) {
+const BasicLayout = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -38,23 +37,25 @@ export function BasicLayout({ children }) {
   ]);
 
   const handleAddMenuList = useCallback(() => {
-    setMenuList(menuList.concat([
-      {
-        key: "4",
-        icon: <UserOutlined />,
-        label: "nav 4",
-      },
-      {
-        key: "5",
-        icon: <VideoCameraOutlined />,
-        label: "nav 5",
-      },
-      {
-        key: "6",
-        icon: <UploadOutlined />,
-        label: "nav 6",
-      },
-    ]))
+    setMenuList(
+      menuList.concat([
+        {
+          key: "4",
+          icon: <UserOutlined />,
+          label: "nav 4",
+        },
+        {
+          key: "5",
+          icon: <VideoCameraOutlined />,
+          label: "nav 5",
+        },
+        {
+          key: "6",
+          icon: <UploadOutlined />,
+          label: "nav 6",
+        },
+      ])
+    );
   }, []);
 
   const handleRemoveMenuList = useCallback(() => {
@@ -74,9 +75,8 @@ export function BasicLayout({ children }) {
         icon: <UploadOutlined />,
         label: "nav 3",
       },
-    ])
+    ]);
   }, []);
-
 
   return (
     <Layout>
@@ -92,7 +92,17 @@ export function BasicLayout({ children }) {
 
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
-        <Button
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+            }}
+          />
+          <Button
             type="text"
             icon={<PlusOutlined />}
             onClick={() => handleAddMenuList()}
@@ -106,16 +116,6 @@ export function BasicLayout({ children }) {
             type="text"
             icon={<MinusOutlined />}
             onClick={() => handleRemoveMenuList()}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
             style={{
               fontSize: "16px",
               width: 64,
@@ -136,6 +136,6 @@ export function BasicLayout({ children }) {
       </Layout>
     </Layout>
   );
-}
+};
 
 export default BasicLayout;
