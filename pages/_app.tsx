@@ -1,4 +1,4 @@
-import wrapper from "@/store/configureStore";
+import wrapper from "@/store";
 import GlobalStyle from "@/styles/GlobalStyle";
 import { AppProps } from "next/app";
 import Head from "next/head";

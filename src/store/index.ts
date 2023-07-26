@@ -9,7 +9,7 @@ import {
 } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-const configureStore = () => {
+const makeStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
   const enhancer =
@@ -22,8 +22,8 @@ const configureStore = () => {
   return store;
 };
 
-const wrapper = createWrapper(configureStore, {
-  debug: process.env.NODE_ENV === "development",
+const wrapper = createWrapper(makeStore, {
+  debug: process.env.NODE_ENV !== "production",
 });
 
 export default wrapper;

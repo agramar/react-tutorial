@@ -1,4 +1,4 @@
-import BasicLayout from "@/layouts/BasicLayout";
+import BasicLayout from "@/components/layouts/BasicLayout";
 
 const MyPage = ({ children }: { children: React.ReactNode }) => {
   return (
