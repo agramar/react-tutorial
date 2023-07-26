@@ -1,5 +1,6 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
+import user from "./user";
 
 const rootReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -7,7 +8,7 @@ const rootReducer = (state: any, action: any) => {
       return action.payload;
     default: {
       const combinedReducer = combineReducers({
-        // TODO 리듀서 합쳐야함
+        user
       });
       return combinedReducer(state, action);
     }

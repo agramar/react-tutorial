@@ -1,5 +1,5 @@
 import reducer from "@/reducers";
-import rootSaga from "@/sagas";
+import saga from "@/sagas";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { createWrapper } from "next-redux-wrapper";
 import {
@@ -9,6 +9,12 @@ import {
 } from "redux";
 import createSagaMiddleware from "redux-saga";
 
+/**
+ * redux store 설정
+ * - redux reducer 설정
+ * - redux saga 설정
+ * - redux devtools 설정
+ */
 const makeStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
@@ -17,8 +23,7 @@ const makeStore = () => {
       ? compose(applyMiddleware(...middlewares))
       : composeWithDevTools(applyMiddleware(...middlewares));
   const store: any = createStore(reducer, enhancer);
-
-  store.sagaTask = sagaMiddleware.run(rootSaga);
+  store.sagaTask = sagaMiddleware.run(saga);
   return store;
 };
 
