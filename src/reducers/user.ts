@@ -7,12 +7,12 @@ export interface UserState {
   name: string | null;
 }
 
-export const initialState: UserState = {
+const initialState: UserState = {
   id: null,
   name: null,
 }
 
-const reducer = (state: UserState = initialState, action: Action & { payload: any }) =>
+const reducer = (state: UserState = initialState, action: Action & { payload?: any, data?: any }) =>
   produce(state, (draft) => {
     switch (action.type) {
       case GET_USER_REQUEST:

@@ -1,8 +1,8 @@
-import BasicLayout from "@/components/layouts/BasicLayout";
-import CustomModal from "@/components/modal/Modal";
-import { Button, Modal, Space } from "antd";
-import { useCallback, useState } from "react";
-import styled from "styled-components";
+import BasicLayout from '@/components/layouts/BasicLayout';
+import CustomModal from '@/components/modal/Modal';
+import { Button, Modal, Space } from 'antd';
+import { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
 const Sample: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isCustomModalOpen, setIsOpenModal] = useState(false);
@@ -33,7 +33,7 @@ const Sample: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {isCustomModalOpen && (
         <CustomModal onClose={toggleCustomModal}>
           <CustomModal.Title>MODAL TITLE</CustomModal.Title>
-          <div>MODAL CONTENT</div>
+          <StyledDiv>내용물</StyledDiv>
         </CustomModal>
       )}
 
@@ -50,6 +50,18 @@ const Sample: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <p>Bla bla ...</p>
       </StyledModal>
 
+      <StyledTestDiv>
+        <div>
+          div
+          <div className="test-div"></div>
+        </div>
+        <div>div</div>
+        <span>span</span>
+        <div>div</div>
+        <span>span</span>
+        <span>span</span>
+      </StyledTestDiv>
+
       {children}
     </BasicLayout>
   );
@@ -60,6 +72,16 @@ const StyledModal = styled(Modal)`
   .ant-modal-content {
     border: 1px solid black;
   }
-`
+`;
+
+const StyledDiv = styled.div`
+  border: 1px solid black;
+`;
+
+const StyledTestDiv = styled.div`
+  test-div > & + & {
+    border: 1px solid black;
+  }
+`;
 
 export default Sample;

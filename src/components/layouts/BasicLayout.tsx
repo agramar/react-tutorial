@@ -1,131 +1,21 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  MinusOutlined,
-  PlusOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
-import { useCallback, useState } from "react";
+import { Layout, theme } from 'antd';
+import SideMenu from '../SideMenu';
 
 const { Header, Sider, Content } = Layout;
 
-const BasicLayout = ({ children }: { children: React.ReactNode }) => {
-  const [collapsed, setCollapsed] = useState(false);
+const BasicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const [menuList, setMenuList] = useState([
-    {
-      key: "1",
-      icon: <UserOutlined />,
-      label: "nav 1",
-    },
-    {
-      key: "2",
-      icon: <VideoCameraOutlined />,
-      label: "nav 2",
-    },
-    {
-      key: "3",
-      icon: <UploadOutlined />,
-      label: "nav 3",
-    },
-  ]);
-
-  const handleAddMenuList = useCallback(() => {
-    setMenuList(
-      menuList.concat([
-        {
-          key: "4",
-          icon: <UserOutlined />,
-          label: "nav 4",
-        },
-        {
-          key: "5",
-          icon: <VideoCameraOutlined />,
-          label: "nav 5",
-        },
-        {
-          key: "6",
-          icon: <UploadOutlined />,
-          label: "nav 6",
-        },
-      ])
-    );
-  }, []);
-
-  const handleRemoveMenuList = useCallback(() => {
-    setMenuList([
-      {
-        key: "1",
-        icon: <UserOutlined />,
-        label: "nav 1",
-      },
-      {
-        key: "2",
-        icon: <VideoCameraOutlined />,
-        label: "nav 2",
-      },
-      {
-        key: "3",
-        icon: <UploadOutlined />,
-        label: "nav 3",
-      },
-    ]);
-  }, []);
-
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={menuList}
-        />
-      </Sider>
-
+      <SideMenu />
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-          <Button
-            type="text"
-            icon={<PlusOutlined />}
-            onClick={() => handleAddMenuList()}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-          <Button
-            type="text"
-            icon={<MinusOutlined />}
-            onClick={() => handleRemoveMenuList()}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
+        <Header style={{ padding: 0, background: colorBgContainer }}></Header>
         <Content
           style={{
-            margin: "24px 16px",
+            margin: '24px 16px',
             padding: 24,
             minHeight: 800,
             background: colorBgContainer,
