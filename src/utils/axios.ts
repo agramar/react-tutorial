@@ -59,8 +59,6 @@ const getAuthToken = () => {
   if (!authTokenRequest) {
     alert("권한이 없거나 로그인 시간이 만료 되었습니다.\n로그인 페이지로 이동합니다.");
     signout();
-    // authTokenRequest = makeActualAuthenticationRequest();
-    authTokenRequest = "dasdasd";
     authTokenRequest.then(resetAuthTokenRequest, resetAuthTokenRequest);
   }
 

@@ -14,6 +14,12 @@ import createSagaMiddleware from "redux-saga";
  * - redux reducer 설정
  * - redux saga 설정
  * - redux devtools 설정
+ *
+ * Process(로직에 따라 여러번 혹은 saga를 안 거칠수도 있음)
+ * 1. rootReducer
+ * 2. concreteReducer
+ * 3. rootSaga
+ * 4. concreteSaga
  */
 const makeStore = () => {
   const sagaMiddleware = createSagaMiddleware();

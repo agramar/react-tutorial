@@ -1,8 +1,6 @@
+import { GET_USER_REQUEST, GET_USER_SUCCESS } from "@/actions/user";
 import { Action } from "redux";
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
-import {
-  GET_USER, GET_USER_SUCCESS
-} from "../reducers/user";
 
 export default function* userSaga() {
   yield all([
@@ -11,7 +9,7 @@ export default function* userSaga() {
 };
 
 function* watchGetUser() {
-  yield takeLatest(GET_USER, getUser);
+  yield takeLatest(GET_USER_REQUEST, getUser);
 }
 
 function* getUser(action: Action & { data: {} }) {
@@ -23,8 +21,5 @@ function* getUser(action: Action & { data: {} }) {
 }
 
 function getUserApi(data: {}) {
-  return {
-    id: "agramar",
-    name: "아그라마"
-  };
+  return data;
 }

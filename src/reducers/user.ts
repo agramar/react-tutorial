@@ -1,30 +1,25 @@
+import { GET_USER_REQUEST, GET_USER_SUCCESS } from "@/actions/user";
 import { produce } from "immer";
 import { Action } from "redux";
 
-// 사용자 타입
-interface User {
+export interface UserState {
   id: string | null;
   name: string | null;
 }
 
-// 초기 사용자 상태
-export const initialState: User = {
+export const initialState: UserState = {
   id: null,
   name: null,
 }
 
-// 액션 타입
-export const GET_USER = "GET_USER";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-
-const reducer = (state: User = initialState, action: Action & { data: {} }) =>
+const reducer = (state: UserState = initialState, action: Action & { payload: any }) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case GET_USER:
+      case GET_USER_REQUEST:
         break;
       case GET_USER_SUCCESS:
-        draft.id = action.data.id;
-        draft.name = action.data.name;
+        draft.id = action.payload.id;
+        draft.name = action.payload.name;
         break;
       default:
         break;
