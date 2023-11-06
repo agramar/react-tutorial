@@ -28,7 +28,7 @@ const SideMenu: React.FC<{ onCollapse?: () => void }> = ({ onCollapse }) => {
   const router = useRouter();
   const { pathname } = router;
   const [collapsed, setCollapsed] = useState(false);
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  const [selectedKeys, setSelectedKeys] = useState([] as string[]);
 
   useEffect(() => {
     switch (pathname) {
